@@ -41,7 +41,7 @@ static unsigned int lastDayOfMonth(const int y, const unsigned int m) {
 // year 0, it is a reference date only. However, calculations involving dates 
 // after the establishment of the Gregorian calendar will be correct. Therefore, 
 // start = dayCount(1582, 10, 1); // WARNING: Dates before Oct, 1582 are inaccurate!
-static int dayCount(const int year, const unsigned int month, const unsigned int day) {
+static int gDay(const int year, const unsigned int month, const unsigned int day) {
 	int y, m;
 
 	m = (month + 9)%12; // Mar = 0, Feb = 11
@@ -50,7 +50,7 @@ static int dayCount(const int year, const unsigned int month, const unsigned int
 }
 
 int main(void) {
-	int n = 0; // Confirm consecutivity (word?) for useful date range. 
+	int n = 0; // Confirm consecutivity for useful date range. 
 
 	fputs("Conducting validity check of consecutive dates... ", stdout);
 
@@ -58,6 +58,6 @@ int main(void) {
 	for (int y = MIN_YEAR; y < (MAX_YEAR - 1); y++) 
 		for (unsigned int m = 1; m <= 12; m++) 
 			for (unsigned int d = 1; d <= lastDayOfMonth(y, m); d++) 
-				assert(n++ == dayCount(y, m, d) - dayCount(MIN_YEAR, 1, 1));
+				assert(n++ == gDay(y, m, d) - gDay(MIN_YEAR, 1, 1));
 	fputs("Check passed.\n\n", stdout);
 }
