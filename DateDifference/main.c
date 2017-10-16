@@ -11,8 +11,6 @@
 *      https://alcor.concordia.ca/~gpkatch/gdate-algorithm.html
 *  (2) Compiled with MS Visual Studio 2017 Community (v141), using C
 *      language options.
-*
-* Submitted in partial fulfillment of the requirements of PCC CIS-265.
 *************************************************************************
 * Change Log:
 *   10/16/2017: Initial release. JME
@@ -22,7 +20,7 @@
 #include <stdio.h>
 
 // Definitions.
-#define MIN_YEAR 1583 // Start of gregorian calendar. 
+#define MIN_YEAR 1582 // Start of gregorian calendar. 
 #define MAX_YEAR 2500 // Maximum end date.
 
 // Leap year validator.
@@ -53,7 +51,7 @@ int dayCount(int year, int month, int day) {
 
 // Program starts here.
 int main(void) {
-	int j = 0; // Confirm consectutivity for useful date range. 
+	int n = 0; // Confirm consectutivity for useful date range. 
 
 	fputs("Conducting validity check of consecutive dates... ", stdout);
 
@@ -61,6 +59,6 @@ int main(void) {
 	for (int y = MIN_YEAR; y < (MAX_YEAR - 1); y++) 
 		for (unsigned m = 1; m <= 12; m++) 
 			for (unsigned int d = 1; d <= lastDayOfMonth(y, m); d++) 
-				assert(j++ == dayCount(y, m, d) - dayCount(MIN_YEAR, 1, 1));
+				assert(n++ == dayCount(y, m, d) - dayCount(MIN_YEAR, 1, 1));
 	fputs("Check passed.\n\n", stdout);
 }
