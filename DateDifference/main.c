@@ -4,7 +4,7 @@
 * Author: James Eli
 * Date: 10/16/2017
 *
-* Determine difference between two days, measured in days.
+* Determine difference between two dates, measured in days.
 *
 * Notes:
 *  (1) Algorithm found here: 
