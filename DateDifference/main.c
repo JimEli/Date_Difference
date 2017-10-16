@@ -21,19 +21,19 @@
 
 // Definitions.
 #define MIN_YEAR 1582 // Start of gregorian calendar. 
-#define MAX_YEAR 2500 // Maximum end date.
+#define MAX_YEAR 2500 // Maximum end date (arbitrary).
 
 // Leap year validator.
 // Logic: if year is divisible by 4, then its a leap year.
 // But if that year is divisible by 100, then its not a leap year.
 // However, if the year is also divisible by 400, then its a leap year.
-inline bool isLeapYear(unsigned int year) {
+static inline bool isLeapYear(const unsigned int year) {
 	return ((!(year % 4) && (year % 100)) || !(year % 400));
 }
 
 // Determine last day of month.
-unsigned int lastDayOfMonth(int y, unsigned int m) {
-	unsigned int eom[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+static unsigned int lastDayOfMonth(const int y, const unsigned int m) {
+	static const unsigned int eom[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	return m != 2 || !isLeapYear(y) ? eom[m] : 29U;
 }
 
@@ -41,7 +41,7 @@ unsigned int lastDayOfMonth(int y, unsigned int m) {
 // year 0, it is a reference date only. However, calculations involving dates 
 // after the establishment of the Gregorian calendar will be correct. Therefore, 
 // start = dayCount(1582, 10, 1); // WARNING: Dates before Oct, 1582 are inaccurate!
-int dayCount(int year, int month, int day) {
+static int dayCount(const int year, const unsigned int month, const unsigned int day) {
 	int y, m;
 
 	m = (month + 9)%12; // Mar = 0, Feb = 11
@@ -49,7 +49,6 @@ int dayCount(int year, int month, int day) {
 	return 365*y + y/4 - y/100 + y/400 + (m*306 + 5)/10 + (day - 1);
 }
 
-// Program starts here.
 int main(void) {
 	int n = 0; // Confirm consectutivity for useful date range. 
 
@@ -57,7 +56,7 @@ int main(void) {
 
 	// Iterate through date range (1582 - 2500).
 	for (int y = MIN_YEAR; y < (MAX_YEAR - 1); y++) 
-		for (unsigned m = 1; m <= 12; m++) 
+		for (unsigned int m = 1; m <= 12; m++) 
 			for (unsigned int d = 1; d <= lastDayOfMonth(y, m); d++) 
 				assert(n++ == dayCount(y, m, d) - dayCount(MIN_YEAR, 1, 1));
 	fputs("Check passed.\n\n", stdout);
