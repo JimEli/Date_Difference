@@ -50,7 +50,7 @@ static int dayCount(const int year, const unsigned int month, const unsigned int
 }
 
 int main(void) {
-	int n = 0; // Confirm consectutivity for useful date range. 
+	int n = 0; // Confirm consecutivity (word?) for useful date range. 
 
 	fputs("Conducting validity check of consecutive dates... ", stdout);
 
