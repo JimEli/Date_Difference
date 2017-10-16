@@ -14,7 +14,7 @@ Now the number of days in y years is:
 ```text
 d = 365y + y/4 - y/100 + y/400
 ```
-Since the lengths of the months are not the same, and the length of February is not fixed, it seems to be impossible to calculate day offsets in a year without look-up tables and checking for leap years. To get around this problem, the start of the calendar year is defined as March. Numbering the months this way causes leap days to be added at the end of the year:
+Since the lengths of the months are not the same, and the length of February is not fixed, it seems impossible to calculate day offsets in a year without look-up tables and checking for leap years. To get around this problem, the start of the calendar year is defined as March. Numbering the months this way causes leap days to be added at the end of the year:
 ```text
 d = f(m) = (306*m + 5)/10
 ```
