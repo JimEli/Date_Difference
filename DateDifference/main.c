@@ -4,7 +4,7 @@
 * Author: James Eli
 * Date: 10/16/2017
 *
-* Determine difference between two dates, measured in days.
+* Determine difference between two days, measured in days.
 *
 * Notes:
 *  (1) Algorithm found here: 
@@ -50,14 +50,18 @@ static int gDay(const int year, const unsigned int month, const unsigned int day
 }
 
 int main(void) {
-	int n = 0; // Confirm consecutivity for useful date range. 
+	
+#ifndef NDEBUG
+	int numDays = 0; // Consecutive count of days.
 
-	fputs("Conducting validity check of consecutive dates... ", stdout);
-
-	// Iterate through date range (1582 - 2500).
+	fputs("Validity check of consecutive dates.\n", stdout);
+	// Iterate through date range (1582 - 2500), asserting consecutive days.
 	for (int y = MIN_YEAR; y < (MAX_YEAR - 1); y++) 
 		for (unsigned int m = 1; m <= 12; m++) 
 			for (unsigned int d = 1; d <= lastDayOfMonth(y, m); d++) 
-				assert(n++ == gDay(y, m, d) - gDay(MIN_YEAR, 1, 1));
-	fputs("Check passed.\n\n", stdout);
+				assert(numDays++ == gDay(y, m, d) - gDay(MIN_YEAR, 1, 1));
+	fputs("Check passed.\n", stdout);
+#endif
+
+	fputs("\nProgram terminating.\n", stdout);
 }
