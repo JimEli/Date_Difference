@@ -61,6 +61,8 @@ int main(void) {
 			for (unsigned int d = 1; d <= lastDayOfMonth(y, m); d++) 
 				assert(numDays++ == gDay(y, m, d) - gDay(MIN_YEAR, 1, 1));
 	fputs("Check passed.\n", stdout);
+#else
+	fputs("Nothing to do.\n", stdout);
 #endif
 
 	fputs("\nProgram terminating.\n", stdout);
