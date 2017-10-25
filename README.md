@@ -10,7 +10,7 @@ The length of a year is 365.2424 days. The Gregorian calendar, instituted in Oct
 ```text
 365 + 1/4 - 1/100 + 1/400
 ```
-Now the number of days in y years is:
+So, the number of days in y years is:
 ```text
 d = 365y + y/4 - y/100 + y/400
 ```
