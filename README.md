@@ -20,4 +20,5 @@ d = f(m) = (306*m + 5)/10
 ```
 Notes:
 * Algorithm found here: https://alcor.concordia.ca/~gpkatch/gdate-algorithm.html
+* WARNING: Dates before establishment of Gregorian calendar (Oct, 1582) are inaccurate!
 * Compiled with MS Visual Studio 2017 Community (v141), using C language options.
